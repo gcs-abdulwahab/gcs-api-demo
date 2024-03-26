@@ -14,6 +14,8 @@ class EmployeeController extends Controller
     public function index()
     {
         return Employee::all();
+
+
     }
 
     /**
@@ -29,7 +31,10 @@ class EmployeeController extends Controller
      */
     public function store(StoreEmployeeRequest $request)
     {
-        //
+        // transaction
+        
+        $employee = Employee::create($request->all());
+
     }
 
     /**

@@ -38,6 +38,7 @@ class LoginRegisterController extends Controller
         $response = [
             'status' => 'success',
             'message' => 'User is created successfully.',
+            'role' => $user->role,
             'data' => $data,
         ];
 

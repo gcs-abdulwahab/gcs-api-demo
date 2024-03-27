@@ -6,11 +6,13 @@ use App\Filament\Resources\PatientResource\Pages;
 use App\Filament\Resources\PatientResource\RelationManagers;
 use App\Models\Patient;
 use Filament\Forms;
+
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
+
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -25,6 +27,7 @@ class PatientResource extends Resource
     {
         return $form
             ->schema([
+
                 TextInput::make('name')
                     ->label('Name')
                     ->required(),
@@ -36,6 +39,7 @@ class PatientResource extends Resource
                     ->label('Phone')
                     ->required(),
                 TextInput::make('address')
+
                     ->label('Address')
                     ->required(),
             ]);
@@ -45,6 +49,7 @@ class PatientResource extends Resource
     {
         return $table
             ->columns([
+
                 TextColumn::make('name')
 
                     ->searchable()
@@ -56,6 +61,7 @@ class PatientResource extends Resource
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('address')
+
                     ->searchable()
                     ->sortable(),
 

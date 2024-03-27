@@ -11,15 +11,25 @@ return new class extends Migration
      */
     public function up(): void
     {
+
+        // disable foreign key checks
+        Schema::disableForeignKeyConstraints();
+
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('phone');
-            $table->string('address');
-            $table->string('salary');
+            $table->string('salary')->default(1);
+            // employee belongs to a department
+            $table->foreignId('department_id')->constrained('departments');
+            $table->string('designation')->default('Lecturer');
+
+            // employee is a user
+            $table->foreignId('user_id')->constrained('users');
+
             $table->timestamps();
         });
+
+        // enable foreign key checks
+        Schema::enableForeignKeyConstraints();
     }
 
     /**

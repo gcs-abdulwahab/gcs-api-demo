@@ -2,24 +2,21 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\PatientResource\Pages;
-use App\Filament\Resources\PatientResource\RelationManagers;
-use App\Models\Patient;
+use App\Filament\Resources\UserResource\Pages;
+use App\Filament\Resources\UserResource\RelationManagers;
+use App\Models\User;
 use Filament\Forms;
-
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
-
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class PatientResource extends Resource
+class UserResource extends Resource
 {
-    protected static ?string $model = Patient::class;
+    protected static ?string $model = User::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -27,21 +24,7 @@ class PatientResource extends Resource
     {
         return $form
             ->schema([
-
-                TextInput::make('name')
-                    ->label('Name')
-                    ->required(),
-                TextInput::make('email')
-                    ->label('Email')
-                    ->email()
-                    ->required(),
-                TextInput::make('phone')
-                    ->label('Phone')
-                    ->required(),
-                TextInput::make('address')
-
-                    ->label('Address')
-                    ->required(),
+                //
             ]);
     }
 
@@ -49,21 +32,16 @@ class PatientResource extends Resource
     {
         return $table
             ->columns([
-
                 TextColumn::make('name')
-
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('email')
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('phone')
+                TextColumn::make('role')
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('address')
 
-                    ->searchable()
-                    ->sortable(),
 
 
             ])
@@ -90,9 +68,9 @@ class PatientResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListPatients::route('/'),
-            'create' => Pages\CreatePatient::route('/create'),
-            'edit' => Pages\EditPatient::route('/{record}/edit'),
+            'index' => Pages\ListUsers::route('/'),
+            'create' => Pages\CreateUser::route('/create'),
+            'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
     }
 }
